@@ -1,0 +1,41 @@
+CREATE TABLE `social_account` (
+    `id_social_account` INT(11) NOT NULL AUTO_INCREMENT,
+    `id_filter` INT(11) NULL DEFAULT NULL,
+    `id_address` INT(11) NULL DEFAULT NULL,
+    `id_image_account` INT(11) NULL DEFAULT NULL,
+    `creation_date` DATETIME NULL DEFAULT NULL,
+    `update_date` DATETIME NULL DEFAULT NULL,
+    `name` VARCHAR(200) NULL DEFAULT NULL,
+    `lastname` VARCHAR(200) NULL DEFAULT NULL,
+    `type` INT(11) NULL DEFAULT '0' COMMENT '1=JOBITO, 2=RECRUITER,3=AMBOS',
+    `password` VARCHAR(100) NULL DEFAULT NULL,
+    `api_key` VARCHAR(100) NULL DEFAULT NULL,
+    `email` VARCHAR(250) NULL DEFAULT NULL,
+    `is_connect_facebook` TINYINT(1) NULL DEFAULT '0',
+    `email_facebook` VARCHAR(250) NULL DEFAULT NULL,
+    `publish_timeline_facebook` TINYINT(1) NULL DEFAULT NULL,
+    `is_connect_google` TINYINT(1) NULL DEFAULT NULL,
+    `id_google` VARCHAR(100) NULL DEFAULT NULL,
+    `email_google` VARCHAR(250) NULL DEFAULT NULL,
+    `publish_hangout_google` TINYINT(1) NULL DEFAULT '0',
+    `status` TINYINT(1) NULL DEFAULT '0',
+    `how_was_registered` TINYINT(1) NULL DEFAULT '0' COMMENT '1=JOB, 2=FAC, 3=GOO',
+    `time_expiration` DATETIME NULL DEFAULT NULL,
+    `id_group_account` INT(11) NULL DEFAULT '0',
+    `mail_company_connects` TINYINT(4) NULL DEFAULT NULL,
+    `mail_company_chat_you` TINYINT(4) NULL DEFAULT NULL,
+    `mail_company_favorite_add` TINYINT(4) NULL DEFAULT NULL,
+    `synchronization_date` DATETIME NULL DEFAULT NULL,
+    `registration_gcm_id` VARCHAR(300) NULL DEFAULT NULL,
+    PRIMARY KEY (`id_social_account`),
+    INDEX `FK_social_account_filter` (`id_filter`),
+    INDEX `FK_social_account_address` (`id_address`),
+    INDEX `FK_social_account_image_account` (`id_image_account`),
+    CONSTRAINT `FK_social_account_address` FOREIGN KEY (`id_address`) REFERENCES `address` (`id_address`),
+    CONSTRAINT `FK_social_account_filter` FOREIGN KEY (`id_filter`) REFERENCES `filter` (`id_filter`),
+    CONSTRAINT `FK_social_account_image_account` FOREIGN KEY (`id_image_account`) REFERENCES `image_account` (`id_image`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=97
+;
